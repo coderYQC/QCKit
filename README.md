@@ -36,7 +36,7 @@ let view = UIView()
 
 ### 1.2UILabel
 这几个控件模块的完全遵循原生继承关系。如UILabel,继承自UIView,则UIView的方法和属性可以完全继承给UILabel，同样可以调用UIView的链式方法。
-除此之外，为UILabel扩展了内边距的属性，一个是单独设置水平内边距，还有一个是上下左右内边距。
+除此之外，为UILabel扩展了内边距的属性，一个是单独设置hPadding(水平内边距)，还有一个是textEdgeInsets(上下左右内边距)。
 ```
 let label = UILabel()
             .frame(0, badge.bottom + 20, kWidth, 40)
