@@ -6,7 +6,7 @@
 
 ### 1.1UIView
 由于涉及到链式编程，中心思想就是把对象的成员变量改造成传递变量值，返回值为对象本身的函数。例如`let view = UIView()` 要为view设置背景色，传统的形式就是`view.backgroundColor = .red`，改造之后就可以直接调用`UIView().backgroundcolor(.red)`，如果想再调用其他属性例如isHidden，传统方式就是`view.isHidden = true`，链式之后就可以在原来的基础上继续追加代码：`UIView().backgroundcolor(.red).isHidden(true)`
-注意：此模块不仅包含了绝大数原生属性（例如frame、alpha、isUserInteractionEnabled等），又扩展了一些编程中常用的属性，例如badge相关的属性。
+注意：此模块不仅包含了绝大数原生属性（例如frame、alpha、isUserInteractionEnabled等），又扩展了一些编程中常用的属性和方法，例如点击事件、badge相关的属性。
 ```
 let view = UIView()
             .frame(16, 100, 100, 50) //frame
