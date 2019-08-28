@@ -10,22 +10,23 @@
 ```
 let view = UIView()
             .frame(16, 100, 100, 50) //frame
-            .borderColor(mainColor)  //边框色
+            .borderColor(.red)       //边框色
             .borderWidth(1)          //边框宽度
+            .backgroundColor(.green) //背景色
             .cornerRadiusWithClip(5) //圆角
             .superView(self.view)    //父视图，等同于self.view.addSubview(view)
-            .badgePadding(8,4)       //以下是badge的属性，此为badge的内边距（左右内边距）
-            .badgeBorderWidth(1)     //badge的边框宽度 
+            .badgePadding(8,4)       //以下是badge的属性，此为badge的内边距（左右内边距,上下内边距），默认值为（6，3）
+            .badgeBorderWidth(1.5)     //badge的边框宽度 
             .badgeBorderColor(.white)//badge的边框颜色 
             .badgeTop(10)            //badge距离父视图的顶部距离
             .badgeHMargin(10)        //badge距离父视图的水平距离
-            .badgeFont(UIFont.systemFont(ofSize: 12, weight: .light))//badge的文字字体
-            .badgeBgColor(mainColor) //badge背景色
+            .badgeFont(UIFont.systemFont(ofSize: 12))//badge的文字字体
+            .badgeBgColor(.red) //badge背景色
             .badgeTextColor(.white)  //badge的文字颜色
-//            .showAllNumber(true)   //是否显示全部数字（此属性对badgeNumber有效，badgeNumber超过99，默认为99+，若设置为false则显示+99，否则，显示真实数字）
-            .badgeText("哈哈")        //badge文字  （badge总共有三种形式，分别是badge数字、badge文字、badge原点）
+//            .showAllNumber(true)   //是否显示全部数字（此属性对badgeNumber有效，默认值为false。badgeNumber超过99，若设置为false，则显示+99，否则，显示真实数字）
+//            .badgeText("哈哈")        //badge文字  （badge总共有三种形式，分别是badge数字、badge文字、badge原点）
 //            .badgeDotWidth(10)     //badge原点宽度
 
-//        badge.qc_badgeNumber = 100  //设置badgeNumber的值
+         badge.qc_badgeNumber = 100  //设置badgeNumber的值
 //        badge.badgeIsHidden(false)  //是否隐藏badge
 ```
