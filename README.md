@@ -6,7 +6,7 @@
 
 ### 1.1UIView
 由于涉及到链式编程，中心思想就是把对象的成员变量改造成传递变量值，返回值为对象本身的函数。例如`let view = UIView()` 要为view设置背景色，传统的形式就是`view.backgroundColor = .red`，改造之后就可以直接调用`UIView().backgroundcolor(.red)`，如果想再调用其他属性例如isHidden，传统方式就是`view.isHidden = true`，链式之后就可以在原来的基础上继续追加代码：`UIView().backgroundcolor(.red).isHidden(true)`
-注意：此模块不仅包含了绝大数原生属性（例如frame、alpha、isUserInteractionEnabled、layer等），有扩展了一些编程中常用的属性，例如badge相关的属性。
+注意：此模块不仅包含了绝大数原生属性（例如frame、alpha、isUserInteractionEnabled等），又扩展了一些编程中常用的属性，例如badge相关的属性。
 ```
 let view = UIView()
             .frame(16, 100, 100, 50) //frame
@@ -23,6 +23,9 @@ let view = UIView()
             .badgeFont(UIFont.systemFont(ofSize: 12))//badge的文字字体
             .badgeBgColor(.red) //badge背景色
             .badgeTextColor(.white)  //badge的文字颜色
+            .addAction { (view) in   //扩展了view的点击事件
+                print("点击了view")
+        }
 //            .showAllNumber(true)   //是否显示全部数字（此属性对badgeNumber有效，默认值为false。badgeNumber超过99，若设置为false，则显示+99，否则，显示真实数字）
 //            .badgeText("哈哈")        //badge文字  （badge总共有三种形式，分别是badge数字、badge文字、badge原点）
 //            .badgeDotWidth(10)     //badge原点宽度
@@ -30,3 +33,27 @@ let view = UIView()
          badge.qc_badgeNumber = 100  //设置badgeNumber的值
 //        badge.badgeIsHidden(false)  //是否隐藏badge
 ```
+
+### 1.2UILabel
+这几个控件模块的完全遵循原生继承关系。如UILabel,继承自UIView,则UIView的方法和属性可以完全继承给UILabel，同样可以调用UIView的链式方法。
+除此之外，为UILabel扩展了内边距的属性，一个是单独设置水平内边距，还有一个是上下左右内边距。
+```
+let label = UILabel()
+            .frame(0, badge.bottom + 20, kWidth, 40)
+            .font(14)
+            .textColor(.white)
+            .superView(self.view)
+            //            .numberOfLines(0)
+            .backgroundColor(.red)
+            、、           .hPadding(16, 16)  //水平内边距
+            .textEdgeInsets(UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16))//上下左右内边距，此属性的高度自适应。
+            .addAction { (label) in
+                print("点击了label")
+            }
+label.text = "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
+```    
+       
+
+
+
+
