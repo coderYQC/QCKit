@@ -53,7 +53,7 @@ let label = UILabel()
 label.text = "测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签"
 ```    
 ### 1.2UIButton   
-此模块为UIButton扩展了各种状态的背景色、以及各种状态下的边框颜色
+此模块为UIButton扩展了各种状态的背景色、以及各种状态下的边框颜色，还有图片文字布局类型（图片位置，图片文字间距）
 ```
 let btn =  UIButton()
             .frame(16, toolBar.bottom + 10, kWidth - 32, 40)
