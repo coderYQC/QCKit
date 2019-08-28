@@ -171,7 +171,7 @@ let tv = UITextView()
             })
 ```     
 ### 1.6UIProgressView
-此模块为为UIProgressView扩展了设置高度的属性（由于系统无法通过height属性改变其高度，需要用autolayout方法设置）
+此模块为为UIProgressView扩展了设置高度的属性（由于系统无法通过frame.size.height属性改变其高度，需要用autolayout方法设置）
 ```  
 let progressView = UIProgressView(frame: CGRect(x: 16, y: 100, width: kWidth - 32, height: 10))
             .progress(0.6)
@@ -179,5 +179,21 @@ let progressView = UIProgressView(frame: CGRect(x: 16, y: 100, width: kWidth - 3
             .progressTintColor(.blue)                       //进度条的进度颜色
             .trackTintColor(UIColor(white: 0.95, alpha: 1)) //进度条的背景颜色
             .cornerRadiusWithClip(5)                        //进度条的圆角值
-            .addHeightConstant(10)                          //进度条的高度约束（此属性必须在有父视图的情况下社会）            
+            .addHeightConstant(10)                          //进度条的高度约束（此属性必须在有父视图的情况下才会有效）            
 ```          
+### 1.7UISwitch
+此模块为为UISwitch扩展了设置宽度的属性、设置宽度比例的属性来改变控件的大小（由于系统无法通过frame.size属性改变其高度，需要用autolayout方法设置，若调用这些属性，则可能会造成frame获取错误，因此不可直接调用frame来获取真实的坐标及尺寸） 
+注意：__UISWitch的默认尺寸为：宽度 51，高度 31__ 
+
+let swtW:CGFloat = 100 
+let swtY:CGFloat = 100
+let swt = UISwitch()
+            .origin(16,swtY)
+            .superView(self.view)
+            .isOn(false)
+            .onTintColor(.red)
+            .tintColor(.red)
+            .addWidthConstant(swtH)
+            .addAction { (swt) in
+                print("开关状态\(swt.isOn)")
+            }
