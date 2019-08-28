@@ -198,7 +198,7 @@ let swt = UISwitch()
             .isOn(false)
             .onTintColor(.red)
             .tintColor(.red)
-            .addWidthConstant(swtH)
+            .addWidthConstant(swtW)
             .addAction { (swt) in
                 print("开关状态\(swt.isOn)")
             }
