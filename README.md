@@ -30,8 +30,8 @@ let view = UIView()
 //            .badgeText("哈哈")        //badge文字  （badge总共有三种形式，分别是badge数字、badge文字、badge原点）
 //            .badgeDotWidth(10)     //badge原点宽度
 
-         badge.qc_badgeNumber = 100  //设置badgeNumber的值
-//        badge.badgeIsHidden(false)  //是否隐藏badge
+         view.qc_badgeNumber = 100  //设置badgeNumber的值
+//        view.badgeIsHidden(false)  //是否隐藏badge
 ```
 
 ### 1.2UILabel
