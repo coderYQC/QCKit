@@ -100,7 +100,7 @@ let btn =  UIButton()
 //        btn.removeTapWithControlEvent(.touchUpInside)   // 移除按钮带有事件类型的点击事件（用于cell的缓存复用）
 ```    
 ### 1.4UITextField
-此模块为为UITextField扩展了文本框左右内边距、文本框的左右视图、及右视图的点击事件（比如搜索按钮的点击事件）、占位图文字颜色（可以设置在占位文字之前。原生的占位文字由于是懒加载，如果占位文字没有设置之前，设置占位文字颜色则无效。）、文本输入类型（包含了手机号、纯数字、纯中文、纯字母、字母和数字、金额、整数金额、邮箱、身份证号）、最大值及最大值回调、清除按钮图片设置等
+此模块为为UITextField扩展了文本框左右内边距、文本框的左右视图、及右视图的点击事件（比如搜索按钮的点击事件）、占位图文字颜色（可以设置在占位文字之前。原生的占位文字由于是懒加载，如果占位文字没有设置之前，设置占位文字颜色则无效。）、文本输入类型（包含了手机号、纯数字、纯中文、纯字母、字母和数字、金额、整数金额、邮箱、身份证号）、最大值及最大值回调、清除按钮图片设置、文本输入监听回调、文本开始编辑回调、文本结束编辑回调、是否允许文本输入回调等
 ``` 
 let textField = UITextField()
             .frame(16,100, kWidth-32, 40)
@@ -126,5 +126,30 @@ let textField = UITextField()
             .placeholderColor(.red)
             .clearButtonMode(.whileEditing,"inputClearBtn")  // 设置清除按钮模式，以及设置清除按钮图片，可以不设置，默认为原生清除按钮
 ``` 
-
+### 1.5UITextView
+此模块为为UITextView扩展了占位文字、占位文字颜色、属性占位文字、最大文本数量以及超过最大文本的回调、文本输入监听回调、文本开始编辑回调、文本结束编辑回调、是否允许文本输入回调等属性
+```
+let attributedPlaceHolder = NSMutableAttributedString(string:placeholder )
+        attributedPlaceHolder.addAttributes([NSAttributedString.Key.foregroundColor:mainColor], range: NSRange(location: 0, length: 10))
+        attributedPlaceHolder.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14, weight: .medium)], range: NSRange(location: 0, length: 10))
+        
+let tv = UITextView()
+            .frame(16, self.tf.bottom + 20, kWidth - 32, 100)
+            .cornerRadius(5)
+            .borderColor(mainColor)
+            .borderWidth(1)
+            .backgroundColor(.white)
+            .attributedPlaceHolder(attributedPlaceHolder)  
+//            .placeHolder("请输入备注内容...(最多输入50字)")
+//            .placeHolderColor(UIColor(white: 0.7, alpha: 1))
+            .lineFragmentPadding(10)
+            .textContainerInset(UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
+            .textColor(mainColor)
+            .font(14)
+            .tintColor(mainColor)
+            .superView(self.view)
+            .maxLength(50, {
+                SVProgressHUD.showInfo(withStatus: "只能输入50个字哟！！！！！")
+            })
+```     
 
