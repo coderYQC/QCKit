@@ -39,7 +39,7 @@ let view = UIView()
 除此之外，为UILabel扩展了内边距的属性，一个是单独设置hPadding(水平内边距)，还有一个是textEdgeInsets(上下左右内边距)。
 ```
 let label = UILabel()
-            .frame(0, badge.bottom + 20, kWidth, 40)
+            .frame(0, 100, kWidth, 40)
             .font(14)
             .textColor(.white)
             .superView(self.view)
@@ -52,11 +52,11 @@ let label = UILabel()
             }
 label.text = "测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签"
 ```    
-### 1.2UIButton   
+### 1.3UIButton   
 此模块为UIButton扩展了各种状态的背景色、以及各种状态下的边框颜色，还有图片文字布局类型（图片位置，图片文字间距）
 ```
 let btn =  UIButton()
-            .frame(16, toolBar.bottom + 10, kWidth - 32, 40)
+            .frame(16, 100, kWidth - 32, 40)
             .textFont(15)                          // 按钮字体
             .title("测试按钮")                      // 按钮文字
             .image("测试图片")                      // 按钮图片
@@ -99,8 +99,30 @@ let btn =  UIButton()
             }, .allEvents)
 //        btn.removeTapWithControlEvent(.touchUpInside)   // 移除按钮带有事件类型的点击事件（用于cell的缓存复用）
 ```    
-       
-
-
+### 1.4UITextField
+此模块为为UITextField扩展了文本框左右内边距、文本框的左右视图、及右视图的点击事件（比如搜索按钮的点击事件）、占位图文字颜色（可以设置在占位文字之前。原生的占位文字由于是懒加载，如果占位文字没有设置之前，设置占位文字颜色则无效。）、文本输入类型（包含了手机号、纯数字、纯中文、纯字母、字母和数字、金额、整数金额、邮箱、身份证号）、最大值及最大值回调、清除按钮图片设置等
+``` 
+let textField = UITextField()
+            .frame(16,100, kWidth-32, 40)
+            .backgroundColor(.white)
+            .cornerRadiusWithClip(20)
+            .font(14)
+            .textColor(.red)
+            .borderWidth(1)
+            .borderColor(.red)
+            .superView(self.view)
+            .paddingLeft(16)                   // 设置文本框左内边距             
+            .paddingRight(16)                  // 设置文本框右内边距    
+            .leftView("左边图标")               // 设置左边图标 
+            .rightView("右边图标",false)        // 设置右边图标，是否显示分割线
+            .tintColor(.red)                   // 设置光标颜色
+            .placeholder("请输入金额")       
+            .textFieldType(.money)             //设置文本输入类型
+            .maxMoney(1000, {                  //设置最大金额数，以及超过最大金额的回调
+                 print("输入金额过大，请重新选择")
+            })
+            .placeholderColor(.red)
+            .clearButtonMode(.whileEditing,"inputClearBtn")  // 设置清除按钮模式，以及设置清除按钮图片，可以不设置，默认为原生清除按钮
+``` 
 
 
