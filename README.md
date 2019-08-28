@@ -118,16 +118,25 @@ let textField = UITextField()
                 print("点击右侧图标事件")
             })       
             .tintColor(.red)                   // 设置光标颜色
-            .placeholder("请输入金额")       
+            .placeholder("请输入金额")           //占位文字
+            .placeholderColor(.red)            //占位文字颜色
             .textFieldType(.money)             //设置文本输入类型
             .maxMoney(1000, {                  //设置最大金额数，以及超过最大金额的回调
                  print("输入金额过大，请重新选择")
+            })  
+            .valuesChanged({ (txt) in
+                 print("文本改变\(txt)")
             })
-            .placeholderColor(.red)
+            .beginEditing({
+                print("开始编辑")
+            })
+            .endEditing({ (txt) in
+                print("结束编辑")
+            })
             .clearButtonMode(.whileEditing,"inputClearBtn")  // 设置清除按钮模式，以及设置清除按钮图片，可以不设置，默认为原生清除按钮
 ``` 
 ### 1.5UITextView
-此模块为为UITextView扩展了占位文字、占位文字颜色、属性占位文字、最大文本数量以及超过最大文本的回调、文本输入监听回调、文本开始编辑回调、文本结束编辑回调、是否允许文本输入回调等属性
+此模块为为UITextView扩展了占位文字、占位文字颜色、属性占位文字、文本框内边距、左右内边距、最大文本数量以及超过最大文本的回调、文本输入监听回调、文本开始编辑回调、文本结束编辑回调、是否允许文本输入回调等属性
 ```
 let attributedPlaceHolder = NSMutableAttributedString(string:placeholder )
         attributedPlaceHolder.addAttributes([NSAttributedString.Key.foregroundColor:mainColor], range: NSRange(location: 0, length: 10))
@@ -139,17 +148,26 @@ let tv = UITextView()
             .borderColor(mainColor)
             .borderWidth(1)
             .backgroundColor(.white)
-            .attributedPlaceHolder(attributedPlaceHolder)  
-//            .placeHolder("请输入备注内容...(最多输入50字)")
-//            .placeHolderColor(UIColor(white: 0.7, alpha: 1))
-            .lineFragmentPadding(10)
-            .textContainerInset(UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
-            .textColor(mainColor)
+            .attributedPlaceHolder(attributedPlaceHolder)       //属性占位文字
+//            .placeHolder("请输入备注内容...(最多输入50字)")       //占位文字
+//            .placeHolderColor(UIColor(white: 0.7, alpha: 1))  //占位文字颜色
+            .lineFragmentPadding(10)                            //左右内边距
+            .textContainerInset(UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))  //文本框内边距
+            .textColor(.gray)
             .font(14)
-            .tintColor(mainColor)
+            .tintColor(.red)
             .superView(self.view)
             .maxLength(50, {
                 SVProgressHUD.showInfo(withStatus: "只能输入50个字哟！！！！！")
+            })
+            .valuesChanged({ (txt) in
+                 print("文本改变\(txt)")
+            })
+            .beginEditing({
+                print("开始编辑")
+            })
+            .endEditing({ (txt) in
+                print("结束编辑")
             })
 ```     
 
