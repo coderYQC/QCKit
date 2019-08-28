@@ -50,7 +50,53 @@ let label = UILabel()
             .addAction { (label) in
                 print("点击了label")
             }
-label.text = "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
+label.text = "测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签"
+```    
+### 1.2UIButton   
+```
+let btn =  UIButton()
+            .frame(16, toolBar.bottom + 10, kWidth - 32, 40)
+            .textFont(15)                          // 按钮字体
+            .title("测试按钮")                      // 按钮文字
+            .image("测试图片")                      // 按钮图片
+            .image_Sel("选中测试图片")               // 按钮选中图片
+            .image_Disable("失效测试图片")           // 按钮失效图片
+            .image_HighLight("高亮测试图片")         // 按钮高亮图片
+            .backgroundColor(.white)               // 按钮正常背景色
+            .backgroundColor_Sel(.red)             // 按钮选中背景色
+            .backgroundColor_Disable(.gray)        // 按钮失效背景色
+            .backgroundColor_HighLight(.green)     // 按钮高亮背景色
+            .titleColor(.green)                    // 按钮正常字体颜色
+            .titleColor_Sel(.white)                // 按钮选中字体颜色
+            .titleColor_Disable(.white)            // 按钮失效字体颜色
+            .titleColor_HighLight(.white)          // 按钮高亮字体颜色
+            .borderWidth(1)                        // 按钮边框宽度
+            .cornerRadiusWithClip(5)               // 按钮圆角大小(其layer.maskToBounds = true)
+            .borderColor(.green)                   // 按钮边框颜色
+            .borderColor_Sel(.green)               // 按钮选中边框颜色
+            .borderColor_Disable(.gray)            // 按钮失效边框颜色
+            .borderColor_HighLight(.green)         // 按钮高亮边框颜色
+            .layoutButton(.right, 10)              // 按钮图片问题布局设置（共有三个参数：buttonImagePosition（图片相对于文字的位置top/bottom/right/left）, imageTitleSpace(图片文字之间的距离)，fitSize（是否宽度或高度自适应））
+            .superView(self.view) 
+            .addAction({ (btn) in                  // 按钮点击事件
+                  print("手指抬起")
+            }) 
+            .addActionWithControlEvent({ (btn) in  // 按钮带有事件类型的点击事件
+                  print("手指按下")
+            }, .touchDown)
+            .addActionWithControlEvent({ (btn) in
+                  print("手指抬起")
+            }, .touchUpInside)
+            .addActionWithControlEvent({ (btn) in
+                   print("手指多次点击")
+            }, .touchDownRepeat)
+            .addActionWithControlEvent({ (btn) in
+                   print("点击完成")
+            }, .primaryActionTriggered)
+            .addActionWithControlEvent({ (btn) in
+                   print("全部事件")
+            }, .allEvents)
+//        btn.removeTapWithControlEvent(.touchUpInside)   // 移除按钮带有事件类型的点击事件（用于cell的缓存复用）
 ```    
        
 
