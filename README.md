@@ -45,7 +45,7 @@ let label = UILabel()
             .superView(self.view)
             //            .numberOfLines(0)
             .backgroundColor(.red)
-            、、           .hPadding(16, 16)  //水平内边距
+            //            .hPadding(16, 16)  //水平内边距
             .textEdgeInsets(UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16))//上下左右内边距，此属性的高度自适应。
             .addAction { (label) in
                 print("点击了label")
