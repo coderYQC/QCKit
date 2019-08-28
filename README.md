@@ -113,8 +113,8 @@ let textField = UITextField()
             .superView(self.view)
             .paddingLeft(16)                   // 设置文本框左内边距             
             .paddingRight(16)                  // 设置文本框右内边距    
-            .leftView("左边图标")               // 设置左边图标 
-            .rightView("", true, { (_) in      // 设置右边图标，是否显示分割线，右侧图标点击事件
+            .leftView("左侧图标")               // 设置左边图标 
+            .rightView("右侧图标", true, { (_) in      // 设置右边图标，是否显示分割线，右侧图标点击事件
                 print("点击右侧图标事件")
             })       
             .tintColor(.red)                   // 设置光标颜色
