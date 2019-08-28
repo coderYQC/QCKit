@@ -172,8 +172,8 @@ let tv = UITextView()
 ```     
 ### 1.6UIProgressView
 此模块为为UIProgressView扩展了设置高度的属性（由于系统无法通过frame.size.height属性改变其高度，需要用autolayout方法设置）
-__注意：
-__  1.  若调用以上扩展的这些属性，则可能会造成frame获取错误，因此不可直接调用frame来获取真实的坐标及尺寸__ 
+</br>__注意：__
+</br>__1.  若调用以上扩展的这些属性，则可能会造成frame获取错误，因此不可直接调用frame来获取真实的坐标及尺寸__ 
 ```  
 let progressView = UIProgressView(frame: CGRect(x: 16, y: 100, width: kWidth - 32, height: 10))
             .progress(0.6)
@@ -185,7 +185,7 @@ let progressView = UIProgressView(frame: CGRect(x: 16, y: 100, width: kWidth - 3
 ```          
 ### 1.7UISwitch
 此模块为为UISwitch扩展了设置宽度的属性、设置宽度比例的属性来改变控件的大小（由于系统无法通过frame.size属性改变其高度，需要用autolayout方法设置） 
-</br>__注意：
+</br>__注意：__
 </br>__1.  UISWitch的默认尺寸为：宽度 51，高度 31__    
 </br>__2.  若调用以上扩展的这些属性，则可能会造成frame获取错误，因此不可直接调用frame来获取真实的坐标及尺寸__
 
