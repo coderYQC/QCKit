@@ -69,17 +69,17 @@ let btn =  UIButton()
             .image_HighLight("高亮测试图片")         // 按钮高亮图片
             .backgroundColor(.white)               // 按钮正常背景色
             .backgroundColor_Sel(.red)             // 按钮选中背景色
-            .backgroundColor_Disable(.gray)        // 按钮失效背景色
+            .backgroundColor_Disable(.gray)        // 按钮禁用背景色
             .backgroundColor_HighLight(.green)     // 按钮高亮背景色
             .titleColor(.green)                    // 按钮正常字体颜色
             .titleColor_Sel(.white)                // 按钮选中字体颜色
-            .titleColor_Disable(.white)            // 按钮失效字体颜色
+            .titleColor_Disable(.white)            // 按钮禁用字体颜色
             .titleColor_HighLight(.white)          // 按钮高亮字体颜色
             .borderWidth(1)                        // 按钮边框宽度
             .cornerRadiusWithClip(5)               // 按钮圆角大小(其layer.maskToBounds = true)
             .borderColor(.green)                   // 按钮边框颜色
             .borderColor_Sel(.green)               // 按钮选中边框颜色
-            .borderColor_Disable(.gray)            // 按钮失效边框颜色
+            .borderColor_Disable(.gray)            // 按钮禁用边框颜色
             .borderColor_HighLight(.green)         // 按钮高亮边框颜色
             .layoutButton(.right, 10)              // 按钮图片问题布局设置（共有三个参数：buttonImagePosition（图片相对于文字的位置top/bottom/right/left）, imageTitleSpace(图片文字之间的距离)，fitSize（是否宽度或高度自适应））
             .superView(self.view) 
@@ -187,7 +187,48 @@ let progressView = UIProgressView(frame: CGRect(x: 16, y: 100, width: kWidth - 3
             .cornerRadiusWithClip(5)                        //进度条的圆角值
             .addHeightConstant(10)                          //进度条的高度约束（此属性必须在有父视图的情况下才会有效）            
 ```          
-### 1.7 UISwitch
+### 1.7 UISlider
+此模块为为UISlider扩展了滑动条左侧图片及其点击及其长按事件，滑动条右侧图片及其点击及其长按事件，滑动条点击事件，滑动值的监听
+
+```
+var slideValue:Float = 0.5 
+
+let slider = UISlider()
+            .frame(16, 100, kWidth - 32, 20)
+            .minimumValue(0)
+            .maximumValue(1)
+            .superView(self.view)
+            .value(slideValue)
+//            .minimumTrackTintColor(.blue)                //滑动条前置颜色   
+//            .maximumTrackTintColor(.gray)                //滑动条后置颜色   
+            .thumbImage_Nor("thumbIcon")                   //正常状态下圆形按钮的图片
+//            .thumbImage_Sel("thumbIcon")                 //选中状态下圆形按钮的图片
+//            .thumbImage_Disable("thumbIcon")             //禁用状态下圆形按钮的图片 
+//            .thumbImage_HighLight("thumbIcon")           //高亮状态下圆形按钮的图片 
+            .minimumTrackImage_Nor("line-min")             //正常状态滑动条前置图片 
+            .maximumTrackImage_Nor("line-max")             //正常状态滑动条后置图片 
+            .minimumValueImage("goleft",{[weak self] iv in //滑动条左侧图片及点击和长按事件 
+                slideValue -= 0.05
+                if slideValue < 0 {
+                    slideValue = 0
+                }
+                self!.slider.setValue(slideValue, animated: true)
+            })
+            .maximumValueImage("goright",{[weak self]  iv in//滑动条右侧图片及点击和长按事件 
+                slideValue += 0.05
+                if slideValue > 1 {
+                    slideValue = 1
+                }
+                self!.slider.setValue(slideValue, animated: true)
+            })
+            .allowTap(true)                                 //滑动条是否允许点击
+            .valueChanged { (_, value) in                   //滑动条滑动值的监听
+                slideValue = value
+        }
+```
+
+
+### 1.8 UISwitch
 此模块为为UISwitch扩展了设置宽度的属性、设置宽度比例的属性来改变控件的大小（由于系统无法通过frame.size属性改变其高度，需要用autolayout方法设置） 
 </br>__注意：__
 </br>__1.  UISWitch的默认尺寸为：宽度 51，高度 31__   
@@ -208,7 +249,7 @@ let swt = UISwitch()
                 print("开关状态\(swt.isOn)")
             }
 ```   
-### 1.8 UIAlertController
+### 1.9 UIAlertController
 此模块为UIAlertController进行了封装和功能扩充，初始化除了（title,message,可选）扩充了（titleFont（标题字体,可选）,messageFont（文本字体,可选）,messagePararaphStyle（文本段落样式（段落对其方式、段落行间距、段落间距）,可选）,mainColor（主题色,可选）,textColor（标题、文本字体颜色,可选）,backgroundImage（弹窗背景色,可选）等属性）
 ```   
  UIAlertController(title: "确定删除吗？",                                          //弹窗标题
