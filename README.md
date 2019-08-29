@@ -4,7 +4,7 @@
 ## 1.QCChainableUI
 顾名思义，此模块为链式创建UI控件模块。包含了我们常用的所有UI视图，例如UIView、UIControl、UIButton、UIImageView、UILabel、UITextView、UITextField、UIScrollView、UITableView、UICollectionView、UIWebView、WKWebView、UIProgressView、UISlider、UISwitch、UIToolbar、UIAlertController等十多种UI控件。下面具体介绍它们各自的API：
 
-### 1.1UIView
+### 1.1 UIView
 由于涉及到链式编程，中心思想就是把对象的成员变量改造成传递变量值，返回值为对象本身的函数。例如`let view = UIView()` 要为view设置背景色，传统的形式就是`view.backgroundColor = .red`，改造之后就可以直接调用`UIView().backgroundcolor(.red)`，如果想再调用其他属性例如isHidden，传统方式就是`view.isHidden = true`，链式之后就可以在原来的基础上继续追加代码：`UIView().backgroundcolor(.red).isHidden(true)`
 注意：此模块不仅包含了绝大数原生属性（例如frame、alpha、isUserInteractionEnabled等），又扩展了一些编程中常用的属性和方法，例如点击事件、badge相关的属性。
 ```
@@ -34,7 +34,7 @@ let view = UIView()
 //        view.badgeIsHidden(false)  //是否隐藏badge
 ```
 
-### 1.2UILabel
+### 1.2 UILabel
 这几个控件模块的完全遵循原生继承关系。如UILabel,继承自UIView,则UIView的方法和属性可以完全继承给UILabel，同样可以调用UIView的链式方法。
 除此之外，为UILabel扩展了内边距的属性，一个是单独设置hPadding(水平内边距)，还有一个是textEdgeInsets(上下左右内边距)。
 </br>__注意：__
@@ -54,7 +54,7 @@ let label = UILabel()
             }
 label.text = "测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签测试标签"
 ```    
-### 1.3UIButton   
+### 1.3 UIButton   
 此模块为UIButton扩展了各种状态的背景色、以及各种状态下的边框颜色，还有图片文字布局类型（图片位置，图片文字间距）
 ```
 let btn =  UIButton()
@@ -101,7 +101,7 @@ let btn =  UIButton()
             }, .allEvents)
 //        btn.removeTapWithControlEvent(.touchUpInside)   // 移除按钮带有事件类型的点击事件（用于cell的缓存复用）
 ```    
-### 1.4UITextField
+### 1.4 UITextField
 此模块为为UITextField扩展了文本框左右内边距、文本框的左右视图、及右视图的点击事件（比如搜索按钮的点击事件）、占位图文字颜色（可以设置在占位文字之前。原生的占位文字由于是懒加载，如果占位文字没有设置之前，设置占位文字颜色则无效。）、文本输入类型（包含了手机号、纯数字、纯中文、纯字母、字母和数字、金额、整数金额、邮箱、身份证号）、最大值及最大值回调、清除按钮图片设置、文本输入监听回调、文本开始编辑回调、文本结束编辑回调、是否允许文本输入回调等
 ``` 
 let textField = UITextField()
@@ -137,7 +137,7 @@ let textField = UITextField()
             })
             .clearButtonMode(.whileEditing,"inputClearBtn")  // 设置清除按钮模式，以及设置清除按钮图片，可以不设置，默认为原生清除按钮
 ``` 
-### 1.5UITextView
+### 1.5 UITextView
 此模块为为UITextView扩展了占位文字、占位文字颜色、属性占位文字、文本框内边距、左右内边距、最大文本数量以及超过最大文本的回调、文本输入监听回调、文本开始编辑回调、文本结束编辑回调、是否允许文本输入回调等属性
 ```
 let attributedPlaceHolder = NSMutableAttributedString(string:placeholder )
@@ -172,7 +172,7 @@ let tv = UITextView()
                 print("结束编辑")
             })
 ```     
-### 1.6UIProgressView
+### 1.6 UIProgressView
 此模块为为UIProgressView扩展了设置高度的属性（由于系统无法通过frame.size.height属性改变其高度，需要用autolayout方法设置）
 </br>__注意：__
 </br>__1.  若调用以上扩展的这些属性，则可能会造成frame获取错误，因此不可直接调用frame来获取真实的坐标及尺寸__ 
@@ -185,7 +185,7 @@ let progressView = UIProgressView(frame: CGRect(x: 16, y: 100, width: kWidth - 3
             .cornerRadiusWithClip(5)                        //进度条的圆角值
             .addHeightConstant(10)                          //进度条的高度约束（此属性必须在有父视图的情况下才会有效）            
 ```          
-### 1.7UISwitch
+### 1.7 UISwitch
 此模块为为UISwitch扩展了设置宽度的属性、设置宽度比例的属性来改变控件的大小（由于系统无法通过frame.size属性改变其高度，需要用autolayout方法设置） 
 </br>__注意：__
 </br>__1.  UISWitch的默认尺寸为：宽度 51，高度 31__   
@@ -200,8 +200,10 @@ let swt = UISwitch()
             .isOn(false)
             .onTintColor(.red)
             .tintColor(.red)
-            .addWidthConstant(swtW)
+ //            .sizeScale(0.8) //通过宽度的比例来设置宽度大小
+            .addWidthConstant(swtW) //直接设置宽度大小
             .addAction { (swt) in
                 print("开关状态\(swt.isOn)")
             }
 ```   
+### 1.8 UIToolbar
