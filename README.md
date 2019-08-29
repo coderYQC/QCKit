@@ -37,6 +37,8 @@ let view = UIView()
 ### 1.2UILabel
 这几个控件模块的完全遵循原生继承关系。如UILabel,继承自UIView,则UIView的方法和属性可以完全继承给UILabel，同样可以调用UIView的链式方法。
 除此之外，为UILabel扩展了内边距的属性，一个是单独设置hPadding(水平内边距)，还有一个是textEdgeInsets(上下左右内边距)。
+</br>__注意：__
+</br>__1.  若调用以上扩展的这些属性，则会造成frame获取错误，因此不可直接调用frame来获取真实的坐标及尺寸,如果想设置或者获取UILabel的属性，则可以直接调用superView的属性__ 
 ```
 let label = UILabel()
             .frame(0, 100, kWidth, 40)
