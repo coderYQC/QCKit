@@ -282,5 +282,11 @@ let swt = UISwitch()
             })
 ```   
 
+## 2.QCListView
+QCListView，顾名思义就是为列表视图模块，封装此模块旨在简化UITableView,及UICollectionView的创建及处理代理数据源的复杂逻辑，使用简单几句代码就能实现其复杂的业务逻辑。
+此模块共包含五个文件：QCEmptyView（空白页）、QCListView（列表视图基类）、QCTableView、QCCollectionView、QCListViewModel
+
+
+
 
 
