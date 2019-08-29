@@ -6,7 +6,7 @@
 
 ### 1.1 UIView
 由于涉及到链式编程，中心思想就是把对象的成员变量改造成传递变量值，返回值为对象本身的函数。例如`let view = UIView()` 要为view设置背景色，传统的形式就是`view.backgroundColor = .red`，改造之后就可以直接调用`UIView().backgroundcolor(.red)`，如果想再调用其他属性例如isHidden，传统方式就是`view.isHidden = true`，链式之后就可以在原来的基础上继续追加代码：`UIView().backgroundcolor(.red).isHidden(true)`
-注意：此模块不仅包含了绝大数原生属性（例如frame、alpha、isUserInteractionEnabled等），又扩展了一些编程中常用的属性和方法，例如点击事件、badge相关的属性。
+注意：此模块不仅包含了绝大数原生属性（例如frame、alpha、isUserInteractionEnabled等），又扩展了一些编程中常用的属性和方法，例如点击事件、badge相关的属性，展示高斯（毛玻璃）效果以及移除高斯（毛玻璃）效果。
 ```
 let view = UIView()
             .frame(16, 100, 100, 50) //frame
@@ -31,7 +31,9 @@ let view = UIView()
 //            .badgeDotWidth(10)     //badge原点宽度
 
          view.qc_badgeNumber = 100  //设置badgeNumber的值
-//        view.badgeIsHidden(false)  //是否隐藏badge
+//       view.badgeIsHidden(false)  //是否隐藏badge
+//       view.showVisualEffectView(nil,.light,1)  //展示毛玻璃效果   （三个参数：视图内容,模糊类型（.light/.extraLight/.dark）,模糊度）
+//       view.hideVisualEffectView()       //隐藏毛玻璃效果
 ```
 
 ### 1.2 UILabel
@@ -159,9 +161,9 @@ let tv = UITextView()
             .font(14)
             .tintColor(.red)
             .superView(self.view)
-            .maxLength(50, {
+            .maxLength(50, {                                    
                 SVProgressHUD.showInfo(withStatus: "只能输入50个字哟！！！！！")
-            })
+            })                                                 //设置输入文本数量，及超过此数量的回调
             .valuesChanged({ (txt) in
                  print("文本改变\(txt)")
             })
@@ -206,4 +208,38 @@ let swt = UISwitch()
                 print("开关状态\(swt.isOn)")
             }
 ```   
-### 1.8 UIToolbar
+### 1.8 UIAlertController
+此模块为UIAlertController进行了封装和功能扩充，初始化除了（title,message,可选）扩充了（titleFont（标题字体,可选）,messageFont（文本字体,可选）,messagePararaphStyle（文本段落样式（段落对其方式、段落行间距、段落间距）,可选）,mainColor（主题色,可选）,textColor（标题、文本字体颜色,可选）,backgroundImage（弹窗背景色,可选）等属性）
+```   
+ UIAlertController(title: "确定删除吗？",                                          //弹窗标题
+//                                  titleFont: UIFont.systemFont(ofSize: 14),    //弹窗标题字体
+                                  message: "删除后，系统将无法恢复，请谨慎操作",       //弹窗文本
+//                                  messageFont: UIFont.systemFont(ofSize: 12),  //弹窗文本字体
+//                                  messageParagraphStyle: paragraph,            //弹窗文本段落样式
+                                  mainColor: .red,                               //主题色
+                                  textColor: .white,                             //标题文本字体颜色（若设置主题色，此参数默认为白色）
+                                  backgroundImage: "弹窗背景色")                   //弹窗背景色
+                    .addAction(title: "取消",                                     //添加行为，行为标题
+//                               style: .default,                                 //行为样式
+//                               titleColor: .red,                                //行为标题字体颜色（默认为主题色）
+                               handler: { (_) in                                  //行为回调
+                                print("取消")
+                    })
+                    .addAction(title: "删除",
+//                               style: .destructive,
+//                               titleColor: .green,
+                               handler: { (_) in
+                                print("删除")
+                    })
+                    .show(                                                        //弹窗展示
+//                        viewController: self,                                   //弹窗展示发起者，默认为主窗口根控制器
+//                          animated: true,                                       //是否有弹窗动画  默认true
+//                          style: .light,                                        //弹窗的磨玻璃效果 默认nil
+//                          completion: {                                         //弹窗完成的回调  默认为nil
+                
+                    }) 
+            })
+```   
+
+
+
